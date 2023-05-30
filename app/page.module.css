@@ -7,6 +7,12 @@
   min-height: 100vh;
 }
 
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .title {
   font-size: 3rem;
   margin-bottom: 2rem;

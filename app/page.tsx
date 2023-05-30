@@ -14,14 +14,16 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>🤖 🪿</h1>
-      <Form setEvents={setEvents} setLoading={setLoading}/>
-      <Loading loading={loading}/>
-      {events.length > 0 && (
-        <section className="mt-16">
-          <EventList events={events} />
-        </section>
-      )}
+      <div className={styles.container}>
+        <h1 className={styles.title}>🗓️ 🪿</h1>
+        <Form setEvents={setEvents} setLoading={setLoading} />
+        <Loading loading={loading} />
+        {events.length > 0 && (
+          <section className="mt-16">
+            <EventList events={events} />
+          </section>
+        )}
+      </div>
     </main>
   );
 }

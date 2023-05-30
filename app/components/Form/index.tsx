@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 
 import { API_ROUTE } from "../../../utils/constants";
 
+import styles from "./form.module.css";
+
 type TForm = {
   setEvents: Dispatch<SetStateAction<TEvent[]>>;
   setLoading: Dispatch<SetStateAction<boolean>>;
@@ -15,7 +17,7 @@ const Form = ({ setEvents, setLoading }: TForm) => {
 
   const onSubmit = async (data: any) => {
     setLoading(true);
-    setEvents([])
+    setEvents([]);
     if (!data.url) {
       throw new Error("No url provided");
     }
@@ -41,8 +43,11 @@ const Form = ({ setEvents, setLoading }: TForm) => {
 
   return (
     <form name="form" onSubmit={handleSubmit(onSubmit)}>
-      <label className="sr-only" htmlFor="url">Website</label>
+      <label className="sr-only" htmlFor="url">
+        Website
+      </label>
       <input
+        className={styles.input}
         defaultValue="https://mitvergnuegen.com/2023/wochenende-mai-berlin-tipps/"
         type="text"
         {...register("url")}
