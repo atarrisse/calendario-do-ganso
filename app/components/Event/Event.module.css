@@ -1,0 +1,28 @@
+.event {
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 24rem;
+    padding: 1rem 1rem;
+
+}
+.event hr {
+    margin: 1rem 0;
+}
+
+.description {
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+	-webkit-box-orient: vertical; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.buttons {
+    
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}

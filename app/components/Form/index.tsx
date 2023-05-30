@@ -3,16 +3,19 @@
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 
-import { API_ROUTE } from "../../utils/constants";
+import { API_ROUTE } from "../../../utils/constants";
 
 type TForm = {
   setEvents: Dispatch<SetStateAction<TEvent[]>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 };
 
-const Form = ({ setEvents }: TForm) => {
+const Form = ({ setEvents, setLoading }: TForm) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data: any) => {
+    setLoading(true);
+    setEvents([])
     if (!data.url) {
       throw new Error("No url provided");
     }
@@ -27,17 +30,18 @@ const Form = ({ setEvents }: TForm) => {
         const response = await res.json();
         if (!response || response.length === 0)
           throw new Error("No events found");
-
+        setLoading(false);
         setEvents(response);
       });
     } catch (e) {
+      setLoading(false);
       throw new Error("Couldn't get events from page");
     }
   };
 
   return (
     <form name="form" onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="url">Website</label>
+      <label className="sr-only" htmlFor="url">Website</label>
       <input
         defaultValue="https://mitvergnuegen.com/2023/wochenende-mai-berlin-tipps/"
         type="text"
