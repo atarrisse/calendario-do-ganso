@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./app",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -14,15 +15,17 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "types": ["./types.d.ts"],
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/utils/*": ["./utils/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/route.js", "./app"],
   "exclude": ["node_modules"]
 }

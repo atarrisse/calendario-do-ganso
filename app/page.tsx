@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { API_ROUTE } from "./utils/constants";
+import { API_ROUTE } from "../utils/constants";
 
 import styles from "./page.module.css";
+import EventList from "./components/EventList";
 
 export default function Home() {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<TEvent[]>([]);
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data: any) => {
@@ -24,11 +25,11 @@ export default function Home() {
         body: JSON.stringify({ url }),
       }).then(async (res) => {
         const response = await res.json();
-
+        console.log('debug', response);
         if (!response || response.length === 0)
           throw new Error("No events found");
 
-        setEvents(events);
+        setEvents(response);
       });
     } catch (e) {
       throw new Error("Couldn't get events from page");
@@ -47,6 +48,11 @@ export default function Home() {
         />
         <input type="submit" />
       </form>
+      {events.length > 0 && (
+        <section>
+          <EventList events={events} />
+        </section>
+      )}
     </main>
   );
 }

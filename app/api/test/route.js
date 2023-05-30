@@ -1,6 +1,7 @@
-const puppeteer = require("puppeteer");
+import puppeteer from "puppeteer";
 
-const formatResponse = require("../../utils/formatResponse");
+// import removeHTMLTags from "../../../utils/removeHTMLTags";
+// import formatResponse from "../utils/formatResponse";
 
 export async function POST(req) {
   const { url } = await req.json();
@@ -11,7 +12,7 @@ export async function POST(req) {
   try {
     const browser = await puppeteer.launch({
       defaultViewport: null,
-      headless: "new"
+      headless: "new",
     });
 
     const page = await browser.newPage();
@@ -27,16 +28,17 @@ export async function POST(req) {
         console.error("No cards found");
         return null;
       }
+      console.log("debug", eventCards);
       const _events = eventCards.map((event) => {
         return {
-          title: event.querySelector(".title")?.innerHTML.trim(),
-          content: event.querySelector(".content")?.innerHTML.trim(),
-          datetime: event.querySelector(".datetime")?.innerHTML.trim(),
+          title: (event.querySelector(".title")?.innerHTML.trim()),
+          content: (event.querySelector(".content")?.innerHTML.trim()),
+          datetime: (event.querySelector(".datetime")?.innerHTML.trim()),
         };
       });
       return _events;
     });
-    
+
     await browser.close();
     return new Response(JSON.stringify(events), { status: 200 });
   } catch (e) {
