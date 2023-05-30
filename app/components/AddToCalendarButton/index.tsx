@@ -1,9 +1,9 @@
-
+import styles from "./AddToCalendarButton.module.css";
 
 const GoogleCalendarButton = () => {
   const handleButtonClick = () => {};
 
-  return <button className="inline border-2 rounded p-2"
+  return <button className={styles.button}
   onClick={handleButtonClick}>Add to Google Calendar</button>;
 };
 

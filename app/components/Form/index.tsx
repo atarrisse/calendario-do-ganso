@@ -42,7 +42,7 @@ const Form = ({ setEvents, setLoading }: TForm) => {
   };
 
   return (
-    <form name="form" onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} name="form" onSubmit={handleSubmit(onSubmit)}>
       <label className="sr-only" htmlFor="url">
         Website
       </label>
@@ -52,7 +52,7 @@ const Form = ({ setEvents, setLoading }: TForm) => {
         type="text"
         {...register("url")}
       />
-      <input type="submit" />
+      <input className={styles.submit} type="submit" value="🪿  🗣️" />
     </form>
   );
 };
