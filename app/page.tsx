@@ -1,17 +1,15 @@
-"use client"
+"use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+
+import { API_ROUTE } from "./utils/constants";
+
 import styles from "./page.module.css";
 
 export default function Home() {
+  const [events, setEvents] = useState([]);
   const { register, handleSubmit } = useForm();
-
-  const makeApiCall  = async (url: string) => {
-    await fetch("/api/test", {
-      method: "POST",
-      body: JSON.stringify({ url }),
-    })
-  }
 
   const onSubmit = async (data: any) => {
     if (!data.url) {
@@ -19,8 +17,22 @@ export default function Home() {
     }
 
     const url = data.url;
-    const info = await makeApiCall(url);
-    console.log('debug', info);
+
+    try {
+      await fetch(API_ROUTE, {
+        method: "POST",
+        body: JSON.stringify({ url }),
+      }).then(async (res) => {
+        const response = await res.json();
+
+        if (!response || response.length === 0)
+          throw new Error("No events found");
+
+        setEvents(events);
+      });
+    } catch (e) {
+      throw new Error("Couldn't get events from page");
+    }
   };
 
   return (
@@ -28,8 +40,11 @@ export default function Home() {
       <h1 className={styles.title}>Hi</h1>
       <form name="form" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="url">Website</label>
-        <input type="text" {...register("url")} />
-        {/* <Input size="lg" type="text" id="url" /> */}
+        <input
+          defaultValue="https://mitvergnuegen.com/2023/wochenende-mai-berlin-tipps/"
+          type="text"
+          {...register("url")}
+        />
         <input type="submit" />
       </form>
     </main>
