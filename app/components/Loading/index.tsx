@@ -1,8 +1,6 @@
 import styles from "./Loading.module.css";
 
-type TLoading = {
-  loading: boolean;
-};
+import { TLoading } from "@/types";
 
 const Loading = ({ loading }: TLoading) => {
   if (!loading) return null;

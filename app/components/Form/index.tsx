@@ -1,16 +1,12 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 
 import { API_ROUTE } from "../../../utils/constants";
 
-import styles from "./form.module.css";
+import { TForm } from "@/types";
 
-type TForm = {
-  setEvents: Dispatch<SetStateAction<TEvent[]>>;
-  setLoading: Dispatch<SetStateAction<boolean>>;
-};
+import styles from "./form.module.css";
 
 const Form = ({ setEvents, setLoading }: TForm) => {
   const { register, handleSubmit } = useForm();

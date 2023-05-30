@@ -1,8 +1,8 @@
 import Event from "../Event";
 
-import styles from "./EventList.module.css";
+import { TEvent } from "@/types";
 
-import { TEvent } from "../../../types";
+import styles from "./EventList.module.css";
 
 const EventList = ({ events }: { events: TEvent[] }) => {
   return (

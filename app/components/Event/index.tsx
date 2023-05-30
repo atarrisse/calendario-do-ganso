@@ -3,7 +3,7 @@ import styles from "./Event.module.css";
 
 import GoogleCalendarButton from "../AddToCalendarButton";
 
-import { TEvent } from "../../types";
+import { TEvent } from "@/types";
 
 const Event = ({ title, datetime, content }: TEvent) => {
   return (

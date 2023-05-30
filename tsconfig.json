@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./app",
+    "baseUrl": "",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -16,6 +16,7 @@
     "jsx": "preserve",
     "incremental": true,
     "types": ["./types.d.ts"],
+    "typeRoots": ["./types.d.ts"],
     "plugins": [
       {
         "name": "next"
@@ -23,7 +24,6 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@/utils/*": ["./utils/*"]
     }
   },
   "include": ["next-env.d.ts", "types.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/route.js", "./app"],
